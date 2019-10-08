@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>Sensor possibilities</title>
+      <link rel="stylesheet" href="style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <table style="width:100%">
+        <tr>
+            <th><strong>Back:</strong> <a href="part1.html">Introduction and Problem Definition</a></th><th><strong>Up:</strong> <a href="index.html">Index</a></th><th><strong>Next:</strong><a href="part3.html">Methods for Motion Tracking</a></th>
+        </tr>
+    </table>
+    <h1 class="centered-text"><strong>Sensor possibilities</strong></h1>
+    
+    <p class="tab">
+    Traditionally, motion capture (and by extension tracking) has been done by using multiple cameras recording at once from different angles to triangulate the position of tracking markers on an actor's body.  Usually, recording is done at high FPS (frames per second) to more accurately capture the movements of an actor.  The more cameras that are added, the more actors that can be tracked.  
+    </p>
+    
+    <br>
+    
+    <div class="center">
+        <figure>
+            <img src="mocapcamera.jpg" alt="motion capture cameras" width="500px"/>    
+            <figcaption style="text-align: center">People setting up OptiTrack Flex 13 Cameras</figcaption>
+        </figure>
+        
+    </div>
+    
+    <p class="tab">
+    Another technique exists, where photosensitive marker tags are used to compute their own positions relative to an IR emitter that activates them with an encoded pulse of IR light.  While this method has many advantages to the traditional camera setup, it still lags behind in popularity and is developed by only a few companies, such as Prakash.
+    </p>
+    
+    <div class="center">
+        <figure>
+            <img src="PrakashOutdoorMotionCapture.jpg" alt="motion capture cameras" width="500px"/>    
+            <figcaption style="text-align: center">Prakash IR Camera Setup</figcaption>
+        </figure>
+        
+    </div>
+    
+    <p class="tab">
+    For markerless tracking systems, which are usually used to track objects such as spacecraft, the tracking system is split into three parts: the optical imaging system, the mechanical tracking platform, and the tracking computer.  The optical imaging system converts light from the target area into an image: this can be a camera, but for applications such as spacecraft tracking a modified telescope would be used.  The mechanical tracking platform moves to keep the optical imaging system locked onto the target.  Finally, the tracking computer analyzes the images from the optical system and feeds the mechanical tracking platform information to keep locked onto the target.
+    </p>
+<!--
+    <div class="center">
+        <div class="image-div">
+                <img src = "handcapture.png" alt="Picture of a hand capture"/>
+        </div>
+        <div class="image-div" style="padding-left:30px">
+            <img src="gottem.jpg" alt="Picture of a hand capture"/>
+        </div>
+        <div style="clear:both; display: table;"></div>
+    </div>
+    <br>
+-->
+</body>
+</html>

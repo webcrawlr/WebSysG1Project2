@@ -1,0 +1,64 @@
+<html>
+<head>
+    <title>Methods for Motion Tracking</title>
+      <link rel="stylesheet" href="style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <table style="width:100%">
+        <tr>
+            <th><strong>Back:</strong> <a href="part2.html">Sensor possibilities</a></th><th><strong>Up:</strong> <a href="index.html">Index</a></th><th><strong>Next:</strong><a href="part4.html">Limitations and Challenges</a></th>
+        </tr>
+    </table>
+    <h1 class="centered-text"><strong>Methods for Motion Tracking</strong></h1>
+    
+    <p class="tab">
+    The most popular method for motion tracking is background subtraction.  We distinguish our target (the actor) from the scene and remove all other artifacts including the background (called broadly "clutter").  This is usually blended with the second method, image differencing, which compares differences between the frames; by removing the background, we can accurately find the motion of the subject between two frames without having to worry about a non-static background.  The rest of the motion capture is related to pose estimation, and determining which parts of the subject correspond to what part of the body; once that is done, we select the part of our tracking that corresponds to an "important part" and map it to our model.
+    </p>
+    
+    <p class="tab">
+    Below is a breakdown of the steps done in markerless motion tracking, elaborating on the above paragraph:
+    </p>
+    
+    <br>
+    
+    <h3>1.  Segmentation</h3>
+    
+    <p class="tab">
+    In order to track an object, we must first identify it from the clutter.  We can then perform background subtraction to focus on our target.  There are many ways to do this: in the film industry where motion capture is often used, actors are usually filmed in front of a green/blue screen, to make background subtraction trivial: one just subtracts everything that is either green or blue.  In a similar vein, one can have a "reference image" of the environment the actor is in <i>without</i> the actor, then subtract that image from the image with the actor in it.  A more nuanced way is to use thermal imaging; since the subject should be "hotter" than the background, one can find the hot and cold spots in and inmage and subtract the cold spots using a threshold.  Ultimately, techniques vary according to the application.
+    </p>
+    
+    <h3>2.  Image Differencing</h3>
+    
+    <p class="tab">
+    By taking the difference between two frames taken on a static background, one can compute the difference (and resulting motion) between two frames.  This can be done without background subtraction, by accounting for hue and lightness and extracting vectors that correspond to a target using a threshold.  However, background subtraction makes image differencing much easier.
+    </p>
+    
+    <h3>3.  Tracking algorithms and categorizing parts of motion</h3>
+    
+    <p class="tab">
+    While the identification of individual limbs falls more under pose estimation than it does motion tracking, motion tracking does employ techniques to split movement into different parts (known as "blobs") to aid pose estimation and fit to a predefined model.  One of the more common ways to do this is the Kalman filter: the Kalman filter takes several measurements over time and uses joint probability distribution over a timeframe to assign a series of hidden variables.  When applied to movement, the Kalman filter can be used to predict the movement of different parts of an actor; these predictions can then be compared to a model, and the blobs determined from that.  For example, we can expect the arm to move a certain way compared to the torso (which will move much less); so if we have an area of high movement connected to an area of low movement, we can assume that the area of low movement is the torso.  Although the tracking is often done relative to a <i>centroid</i> on the body, rather than just a general body part like "torso", the same idea applies.
+    </p>
+    
+    <div class="center">
+        <figure>
+                <img src="Basic_concept_of_Kalman_filtering.svg.png" width="500px"/>
+                <figcaption style="text-align: center">Diagram of a Kalman Filter</figcaption>
+        </figure>    
+    </div>
+    
+    <br>
+    
+    <p class="tab">
+    However, the Kalman filter underperforms when there is a lot of clutter, or variance in the way objects can move (i.e. multimodal distribution).  For example, our above example where the torso moves less than the arms would be completely thrown off by a movement like a cartwheel, where the torso moves at least as much as the arms, if not more.  A better algorithm than the Kalman filter is the condensation algorithm (<strong>con</strong>ditional <strong>dens</strong>ity propog<strong>ation</strong>).  The algorithm estimates the conditional probability density of various states of conformation of an object using factored sampling ( a development from the random sampling common in Monte Carlo algorithms).  Because we deal in a probability <i>distribution</i>, switching to a different mode of movement will generate another "peak" in the probability distribution, which can be accounted for and correctly categorized.
+    </p>
+    <div class="center">
+        <figure>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/hnCasCELUIM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <figcaption style="text-align: center">Video showing markerless motion capture.  Note the detection of the center of the actor, and the tracking of the movement of said point: as the actor moves, tracking algorithms analyze his motion and fit it to a model.</figcaption>
+        </figure>    
+    </div>
+</body>
+</html>

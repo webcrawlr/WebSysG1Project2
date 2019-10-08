@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Introduction and Problem Definition</title>
+      <link rel="stylesheet" href="style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <table style="width:100%">
+        <tr>
+            <th><strong>Back:</strong> None</th><th><strong>Up:</strong> <a href="index.html">Index</a></th><th><strong>Next:</strong><a href="part2.html">Sensor possibilities</a></th>
+        </tr>
+    </table>
+    <h1 class="centered-text"><strong>Introduction and Problem Definition</strong></h1>
+    
+    <p class="tab">
+    In the past, "motion capture" (the process of recording an actor's movements) has been generally done by placing "tracking markers" on various key points of an actor's body and keeping track of their position throughout the actor's movement.  In this implementation, tracking is trivial, since we have a snapshot of where an actor's limbs are every frame.  For markerless motion capture applications, we take a video recording and use Computer Vision to identify the key points we want and (most importantly) keep track of their motion throughout the video, generating a 3d recording of the actor's gestures.
+    </p>
+    
+    <br>
+    
+    <p class="tab">
+    Markerless motion capture is broad topic with multiple steps; here, we will focus on motion tracking, where a computer vision system must recognize the motion of an object and broadly categorize how it should move and what it is.  While the assignment of different "joints" in the skeleton is done by pose estimation, data from the motion tracking phase is used to supplement this, especially as the subject changes position in real-time.
+    </p>
+
+</body>
+</html>

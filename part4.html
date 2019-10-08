@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>Success and Failures</title>
+      <link rel="stylesheet" href="style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <table style="width:100%">
+        <tr>
+            <th><strong>Back:</strong> <a href="part3.html">Methods for Motion Tracking</a></th><th><strong>Up:</strong> <a href="index.html">Index</a></th><th><strong>Next:</strong><a href="part5.html">The Future and Conclusions</a></th>
+        </tr>
+    </table>
+    <h1 class="centered-text"><strong>Limitations and Challenges</strong></h1>
+    
+    <p class="tab">
+    The human body is a complex and multi-faceted object, with over 650 muscles and 360 joints that can move in many different ways.  In order to make motion tracking more feasible, the human body is often simplified into about 64 joints that are deemed "necessary" to track movement; naturally, this loss in fidelity can lead to problems.  Take the video example below:
+    </p>
+    
+    <br>
+    
+    <div class="center">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/HzkPi7yRB8E?start=39" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    
+    <p class="tab">
+    One can notice the odd angles at which the knees are bent, as well as the clipping that happens in the arms; because of the low fidelity of the motion capture skeleton, the model is forced to interpolate between two distant points as an estimation, which can lead to disasterous results.
+    </p>
+    
+    <p class="tab">
+    Another problem in some smaller markerless motion capture systems is lack of depth perception; when using a single, 2D image camera, one does not have any inheirent information about depth, and this can be hard to infer from visual information.  Take the below image as an example: to the left is the raw image, and to the right is a preprocessed image after background subtraction has been done:
+    </p>
+    
+    <div class="center">
+        <img src="40798_2018_139_Fig6_HTML.jpg" width="90%">
+    </div>
+    
+    <p class="tab">
+    From the preprocessed image, it is hard for even our human eyes to tell us which direction the mannequin is facing.  Granted, this is a static image, and motion can help us somewhat, but the point stands that a 2D image conveys less information than a 3D one.  2D images are also more succeptible to illusionary tricks due to light or clutter, since the algorithms must do more to determine where the object is in 3D space.  Fortunately, this problem is not inheirent to markerless motion capture itself, and can be solved with stereo cameras (such as those on a Kinect) or even a multi-camera setup to form what is called an "image hull" of a subject.
+    </p>
+    
+    <br>
+    
+    <div class="center">
+        <figure>
+            <img src="40798_2018_139_Fig2_HTML.jpg" width="500px">
+            <figcaption class="centered-text">Output from a Kinect camera.  Brighter pixels are further away.</figcaption>
+        </figure>    
+    </div>
+    
+    <br>
+
+    <div class="center">
+        <figure>
+            <img src="40798_2018_139_Fig7_HTML.jpg" width="500px">
+            <figcaption class="centered-text">Generation of an image hull from multiple cameras.</figcaption>
+        </figure>    
+    </div>
+    
+    <p class="tab">
+    Aside from these limitations, markerless motion capture performs well, and is used by independent studios as a cheap and efficient way to perform motion capture.
+    </p>
+</body>
+</html>
